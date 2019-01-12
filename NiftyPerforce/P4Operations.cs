@@ -79,7 +79,7 @@ namespace Aurora
 				if(filename.Length == 0)
 					return false;
 				if(!g_p4installed)
-					return NotifyUser("could not find p4 exe installed in perforce directory");
+					return NotifyUser("Could not find p4.exe installed in Perforce directory");
 
 				string token = FormatToken("integrate", filename);
 				if (!LockOp(token))
@@ -93,7 +93,7 @@ namespace Aurora
 				if(filename.Length == 0)
 					return false;
 				if(!g_p4installed)
-					return NotifyUser("could not find p4 exe installed in perforce directory");
+					return NotifyUser("Could not find p4.exe installed in Perforce directory");
 
 				string token = FormatToken("delete", filename);
 				if (!LockOp(token))
@@ -106,7 +106,7 @@ namespace Aurora
 				if(filename.Length == 0)
 					return false;
 				if(!g_p4installed)
-					return NotifyUser("could not find p4 exe installed in perforce directory");
+					return NotifyUser("Could not find p4.exe installed in Perforce directory");
 
 				string token = FormatToken("add", filename);
 				if (!LockOp(token))
@@ -157,7 +157,7 @@ namespace Aurora
 				if(0 == (System.IO.File.GetAttributes(filename) & FileAttributes.ReadOnly))
 					return false;
 				if(!g_p4installed)
-					return NotifyUser("could not find p4 exe installed in perforce directory");
+					return NotifyUser("Could not find p4.exe installed in Perforce directory");
 
 				Log.Debug("EditFile : " + filename);
 				string token = FormatToken("edit", filename);
@@ -175,7 +175,7 @@ namespace Aurora
 				if (0 == (System.IO.File.GetAttributes(filename) & FileAttributes.ReadOnly))
 					return false;
 				if(!g_p4installed)
-					return NotifyUser("could not find p4 exe installed in perforce directory");
+					return NotifyUser("Could not find p4.exe installed in Perforce directory");
 
 				Log.Debug("EditFileImmediate : " + filename);
 				string token = FormatToken("edit", filename);
@@ -189,7 +189,7 @@ namespace Aurora
 				if(filename.Length == 0)
 					return false;
 				if(!g_p4installed)
-					return NotifyUser("could not find p4 exe installed in perforce directory");
+					return NotifyUser("Could not find p4.exe installed in Perforce directory");
 
 				string token = FormatToken("revert", filename);
 				if (!LockOp(token))
@@ -236,7 +236,7 @@ namespace Aurora
 						return AsyncProcess.Schedule(output, "p4.exe", GetUserInfoString() + " diff -du \"" + filename + "#have\"", Path.GetDirectoryName(filename), new AsyncProcess.OnDone(UnlockOp), token);
 					}
 				}
-				return NotifyUser("could not find p4win.exe/p4.exe installed in perforce directory");
+				return NotifyUser("Could not find p4win.exe or p4.exe installed in Perforce directory");
 			}
 
 			public static bool RevisionHistoryFile(OutputWindowPane output, string dirname, string filename)
@@ -250,7 +250,7 @@ namespace Aurora
 					return AsyncProcess.Schedule(output, "p4win.exe", GetUserInfoStringFull(true, dirname) + " -H \"" + filename + "\"", dirname, new AsyncProcess.OnDone(UnlockOp), token, 0);
 				if(g_p4vinstalled)
 					return AsyncProcess.Schedule(output, "p4v.exe", " -win 0 " + GetUserInfoStringFull(true, dirname) + " -cmd \"history " + filename + "\"", dirname, new AsyncProcess.OnDone(UnlockOp), token, 0);
-				return NotifyUser("could not find p4win.exe/p4v.exe installed in perforce directory");
+				return NotifyUser("Could not find p4win.exe or p4v.exe installed in Perforce directory");
 			}
 
 			public static bool P4WinShowFile(OutputWindowPane output, string filename)
@@ -266,7 +266,7 @@ namespace Aurora
 					return AsyncProcess.Schedule(output, "p4v.exe", " -win 0 " + GetUserInfoStringFull(true, Path.GetDirectoryName(filename)) + " -cmd \"open " + filename + "\"", Path.GetDirectoryName(filename), null, null, 0);
 				}
 				
-				return NotifyUser("could not find p4win.exe or p4v.exe installed in perforce directory");
+				return NotifyUser("Could not find p4win.exe or p4v.exe installed in Perforce directory");
 			}
 
 			private static string GetUserInfoString()
@@ -332,7 +332,7 @@ namespace Aurora
 			public static bool TimeLapseView(OutputWindowPane output, string dirname, string filename)
 			{
 				if(!g_p4vinstalled)
-					return NotifyUser("could not find p4v exe installed in perforce directory");
+					return NotifyUser("Could not find p4v.exe installed in Perforce directory");
 				// NOTE: The timelapse view uses the undocumented feature for bringing up the timelapse view. The username, client and port needs to be given in a certain order to work (straight from perforce).
 				string arguments = " -win 0 ";
 				arguments += GetUserInfoStringFull(true, dirname);
@@ -348,7 +348,7 @@ namespace Aurora
 			public static bool RevisionGraph(OutputWindowPane output, string dirname, string filename)
 			{
 				if (!g_p4vinstalled)
-					return NotifyUser("could not find p4v exe installed in perforce directory");
+					return NotifyUser("Could not find p4v.exe installed in Perforce directory");
 				// NOTE: The timelapse view uses the undocumented feature for bringing up the timelapse view. The username, client and port needs to be given in a certain order to work (straight from perforce).
 				string arguments = " -win 0 ";
 				arguments += GetUserInfoStringFull(true, dirname);
